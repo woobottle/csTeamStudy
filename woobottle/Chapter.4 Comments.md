@@ -73,7 +73,6 @@
     // 전역 목록 <smodule>에 속하는 모듈이 우리가 속한 하위 시스템에 의존하는가?
     if (smodule.getDependSubsystems().contains(subSysMod.getSubSystem()))
 
-
     ArrayList moduleDependers = smodule.getDependSubsystems();
     String ourSubSystem = subSysMod.getSubSystem();
     if (moduleDependees.contains(ourSubSystem))
@@ -84,7 +83,7 @@
 11. 공로를 돌리거나 저자를 표시하는 주석
 12. 주석으로 처리한 코드
   많이 남겨두고 있는 것 같다.
-13. HTML 주석
+13. HTML 주석 => 질문하고픔
 14. 전역 정보
 15. 너무 많은 정보
 16. 모호한 관계
