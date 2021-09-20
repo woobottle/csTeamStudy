@@ -40,6 +40,8 @@
 추상화 수준 중간 -> String pagePathName = PathParser.render(pagepath);
 추상화 수준 낮다 -> .append("/n")
 
+추상화 라는게 우리말로 약간 번역 된다 -> 프로그래밍 언어 자체가 추상화 수준이 높아져 간다. 
+
 1. 위에서 아래로 코드 읽기: <strong>내려가기 규칙</strong>
    1. 위에서 아래로 이야기처럼 읽혀야 좋다. 한 함수 다음에는 추상화 수준이 한 단계 낮은 함수가 온다(**)
 
@@ -106,6 +108,8 @@ includeSetupPageInto(newPageContent)는 함수 이름과 인수 사이에 추상
      1. assertEquals < assertExpectedEqualsActual(expected, actual) => 인수 순서를 기억할 필요가 없어진다
 
 ### 부수 효과를 일으키지 마라!
+
+### 출력인수 => 다시 읽을 것
 
 ### 명령과 조회를 분리하라!
 함수는 뭔가를 수행하거나 뭔가에 답하거나 둘중 하나만 해야 한다.
