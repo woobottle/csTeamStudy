@@ -23,7 +23,7 @@ public class HousePark {
 }
 ```
 
-1. default
+2. default
 ```java
 package jump2java.house;
 

@@ -6,7 +6,6 @@
 * Interface Segregation Principle(인터페이스 분리의 법칙)
 * Dependency Inversion Principle(의존성역전의 원칙)
 
-
 ### Single Responsibility Principle(단일 책임의 원칙)
 
 i. 정의 : 클래스는 하나의 기능만을 수행해야 한다. 

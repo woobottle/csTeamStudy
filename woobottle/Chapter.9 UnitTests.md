@@ -1,4 +1,4 @@
-# 1. UnitTest
+# UnitTest
 
 ### TDD 법칙 세 가지
 
