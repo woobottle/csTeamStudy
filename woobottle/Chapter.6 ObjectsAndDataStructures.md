@@ -136,7 +136,6 @@
 객체의 자료를 숨기는 대신 함수를 공개하자
 (객체지향에서 가장 중요한 것은 '객체가 어떤 메세지를 주고 받는가' 이다,  객체가 어떤 데이터를 가지고 있는가가 아니다.)
 
-
 '클래스 C의 메서드 f는 다음과 같은 객체의 메서드만 호출해야 한다'
 * 클래스 C
 * f가 생성한 객체
@@ -244,7 +243,6 @@ ctxt, options, scratchDir이 객체라면 위에서처럼 코드를 짜면 안�
   FileOutputStream fout = new FileOutputStream(outFile);
   BufferedOutputStream bos = new BufferedOutputStream(fout);
 
-
   // 좋은 예
   BufferedOutputStream bos = ctxt.createScratchFileStream(classFileName);
 ```
@@ -259,7 +257,6 @@ ctxt는 내부 구조를 드러내지 않으며, 모듈에서 해당 함수는 �
 DTO의 특수한 형태.
 공개 변수가 있거나 비공개 변수에 조회/설정 함수가 있는 자료 구조지만, 대개 save나 find와 같은 탐색 함수도 제공한다.
 활성레코드는 자료구조로 취급하는것이 좋다.
-
 
 ### 결론
 객체는 동작을 공개하고 자료를 숨긴다. 
