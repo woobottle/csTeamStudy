@@ -101,7 +101,6 @@ class PayServiceTest {
     assertThat(payService.payment()).isEqualTo("samsung");
   }
 
-
   @Test
   void IsKakaoPayOkay() {
     Pay kakaoPay = new KakaoPay();
@@ -154,6 +153,10 @@ public synchronized void rotate(int degress) {
 
 리팩토링 후 코드
 ```java
+
+// 이미지를 조작하는 것 같은데 
+// 생성하고 대체해주는건 뭔가 이상하다
+
 public void scaleToOneDimension(float desiredDimension, float imageDimension) {
   if ( Math.abs(desiredDimension - imageDimension) < errorThreshold) {
     return;
@@ -172,7 +175,8 @@ private void replaceImage(RendereOp newImage) {
   System.gc();
   image = newImage;
 }
-// replaceImage는 SRP를 위반한다.
+
+// replaceImage때문에 class가 SRP를 위반한다.
 // image해체 + image 할당도 해서 그런건가? => 왜 SRP를 위반하는 걸까?
 // 다른 클래스로 옮겨도 좋겠다.
 ```
