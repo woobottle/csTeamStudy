@@ -267,7 +267,6 @@ public class ArgsException extends Exception {
 }
 ```
 
-
 **먼저 지저분한 코드를 짠 뒤에 정리해야 한다**
 
 맨 처음 돌아가게만 한 코드들에 대한 코드들이 나옴.   
@@ -280,7 +279,6 @@ public class ArgsException extends Exception {
 ### String 인수
 
 한 번에 하나씩 고치면서 테스트를 진행, 테스트 케이스가 하나라도 실패하면 다음 변경으로 넘어가기 전에 오류를 수정   
-
 
 ### 결론 
 코드는 언제나 최대한 깔끔하고 단순하게 정리하자.

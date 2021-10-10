@@ -6,8 +6,8 @@
 |210914|Chapter 03, 04, 05|함수, 주석, 포멧팅|정수 5장|Protected 정의, protected 변수를 피해야 하는 이유|
 |210922 밤 11|Chapter 06, 07, 08, 09|챕터 내용 + 정수 숙제, 우병 Protected 발표||| 23시
 |210928|Chapter 10, 11, 12, 13|쳅터 내용, 비지터 패턴 정수 발표|(정수) 어댑터 패턴, (정수, 우병)concurrency, atomic, race condition, deadlock|
-|211005|Chapter 14|||TypeScript 디자인 예시, ContextSwitching, 왜 thread가 많아진다고 성능이 올라가지 않는건지?(정수)|
-
+|211005|Chapter 14|||ContextSwitching, 왜 thread가 많아진다고 성능이 올라가지 않는건지?(정수)|
+|211012|Chatpter 15,16, 17(306)페이지 까지||||
 
 ## directory format
 ```
