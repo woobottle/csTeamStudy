@@ -9,9 +9,11 @@
 |211005|Chapter 14|||ContextSwitching, 왜 thread가 많아진다고 성능이 올라가지 않는건지?(정수)|
 |211012|Chatpter 15,16, 17(306)페이지 까지||||
 
+# nextBook
 ## directory format
 ```
-  name/
-    Chapter.1 ~~~.md
-    Chapter.2 ~~~.md
+  bookName/
+    /userName
+      Chapter.1 ~~~.md
+      Chapter.2 ~~~.md
 ```
