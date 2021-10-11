@@ -71,31 +71,31 @@ public synchronized void rotate(int degrees) {
 ```
 * 일부가 중복임 
 
-   
-
+  
   ```java
 public void scaleToOneDimension(
-	float desiredDimension, float imageDimension) {
-  if (Math.abs(desiredDimension - imageDimension) < errorThreshold) return;
-	float scalingFactor = desiredDimension / imageDimension; 
-  scalingFactor = (float)(Math.floor(scalingFactor * 100) * 0.01f);
-  replaceImage(ImageUtilities.getScaledImage( image, scalingFactor, scalingFactor));
+		float desiredDimension, float imageDimension) {
+  		if (Math.abs(desiredDimension - imageDimension) < errorThreshold) return;
+				float scalingFactor = desiredDimension / imageDimension; 
+  			scalingFactor = (float)(Math.floor(scalingFactor * 100) * 0.01f);
+  		replaceImage(ImageUtilities.getScaledImage( image, scalingFactor, scalingFactor));
 }
 
+```java
 public synchronized void rotate(int degrees) {
 	replaceImage(ImageUtilities.getRotatedImage(image, degrees));
 }
-private void replaceImage(RenderedOp newImage) { image.dispose();
+private void replaceImage(RenderedOp newImage) { 
+  image.dispose();
   System.gc();
   image = newImage;
 }
-  ```
+```
 
 *  클래스가 SRP를 위반한다.
 * 새로 만든 클래스를 다른 클래스로 옮겨도 좋겠다.
 
 ```java
-
 public class VacationPolicy {
   public void accrueUSDivisionVacation() {
     // code to calculate vacation based on hours worked to date // ...
@@ -142,7 +142,6 @@ public class EUVacationPolicy extends VacationPolicy {
 ```
 
 * 하위클래스는 중복되지 않는 정보만 제공해 accrueVaction 알고리즘에서 빠진 구멍만 메운다.
-* 
 
 ## Expressive
 
@@ -162,4 +161,4 @@ public class EUVacationPolicy extends VacationPolicy {
 
 ## Conclusion
 
-* 경험을 대신할 기법이 있나? 없지 여기 기법들은 수십년 노하우니까 ...
+* 경험을 대신할 기법이 있나? 없지 여기 기법들은 수십년 노하우니까 ..

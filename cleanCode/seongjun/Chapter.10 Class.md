@@ -514,6 +514,6 @@ public class ColumnList {
   * 결합도를 낮추면 DIP를 따르는 클래스가 나온다 Dependency Inversion Principle
 
   * 상세한 구현이 아닌 추상화에 의존하라
-
-
+  
+  
 
