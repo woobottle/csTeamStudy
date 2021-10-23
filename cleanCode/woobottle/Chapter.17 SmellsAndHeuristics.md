@@ -535,7 +535,7 @@ private String doRename() throws Exception {
 
 
 **N5: 긴 범위는 긴 이름을 사용하라**     
-이름 길이는 범위 길이에 비례해야 한다. 범위가 작으면 아주 짧은 이름을 길면 긴 이름을 사요하자.
+이름 길이는 범위 길이에 비례해야 한다. 범위가 작으면 아주 짧은 이름을 길면 긴 이름을 사용하자.
 ```java
 private void rollMany(int n, int plus) {
   for (int i = 0; i< n; i++) {
@@ -544,11 +544,9 @@ private void rollMany(int n, int plus) {
 }
 ```
 
-
 **N6: 인코딩을 피하라**    
 이름에 유형 정보나 범위 정보를 넣어서는 안된다.   
 이름 앞에 m_ 이나 f와 같은 접두어는 필요 하지 않다.
-
 
 **N7: 이름으로 부수 효과를 설명하라**    
 함수, 변수, 클래스가 하는 일을 모두 기술하는 이름을 사용한다.    
@@ -561,13 +559,11 @@ public ObjectOutputStream getOos() throws IOException {
   return m_oos;
 }
 ```
-
 => createOrReturnOosf라는 이름이 더 좋다
 
 ### 테스트
 **T1: 불충분한 테스트**   
 테스트 케이스는 잠재적으로 깨질 만한 부분을 모두 테스트해야 한다.
-
 
 **T2: 커버리지 도구를 사용하라!**   
 커버리지 도구는 테스트가 빠뜨리는 공백을 알려준다.
@@ -588,10 +584,8 @@ public ObjectOutputStream getOos() throws IOException {
 테스트 케이스를 최대한 곰꼼히 짜자.   
 합리적인 순서로 정렬된 꼼꼼한 테스트 케이스는 실패 패턴을 드러낸다.
 
-
 **T8: 테스트 커버리지 패턴을 살펴라**   
 통과하는 테스트가 실행하거나 실행하지 않는 코드를 살펴보면 실패하는 테스트 케이스의 실패 원인이 드러난다.
-
 
 **T9: 테스트는 빨라야 한다**   
 

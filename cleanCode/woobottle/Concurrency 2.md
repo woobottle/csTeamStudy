@@ -68,7 +68,6 @@ void process(final Socket socket) {
 }
 ```
 
-
 ### 서버 살펴보기 
 새 서버가 만드는 수레드 수는 몇 개일까? JVM이 허용하는 수까지 가능할 것이다.   
 위의 경우 너무 많은 사용자가 한꺼번에 몰린다면 시스템이 동작을 멈출지도 모른다.   
@@ -368,7 +367,7 @@ public class ClassWithThreadingProblem {
 }
 ```
 
-1. nextId의 현재 값을 기억ㅎ나다
+1. nextId의 현재 값을 기억한다
 2. 스레드 두 개를 생성, 각각 takeNextId()를 한 번씩 호출
 3. nextId가 2 증가했는지 확인
 4. 2 대신에 1만 증가할 때까지 위 단계를 반복한다.

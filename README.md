@@ -9,7 +9,13 @@
 |211005|Chapter 14|||ContextSwitching, 왜 thread가 많아진다고 성능이 올라가지 않는건지?(정수)|
 |211012|Chatpter 15,16, 17(306)페이지 까지||||
 
-# nextBook
+
+# 프로그래밍 면접, 이렇게 준비한다
+|일시|범위|내용|안해온 사람|비고|
+|----|----|----|----|----|
+|21126|Chapter 04, 05|||
+
+
 ## directory format
 ```
   bookName/
