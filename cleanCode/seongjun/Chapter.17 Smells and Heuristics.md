@@ -28,6 +28,7 @@
 4. **Overridden Safeties - 안전 절차 무시 - warning을 끄고 무시하는 것**
 5. **Duplication**
 6. **Code at Wrong Level of Abstraction - 추상화 수준이 올바르지 못한 것**
+   
    * 추상화로 개념을 분리할때는 철저히, 모든 저차원 개념을 파생클래스에 고차원 개념을 기초클래스에 넣는다.
 7. **Base Classes Depending on Their Derivatives**
    *  기초 클래스가 파생클래스를 사용하면 문제가 있는 것
@@ -42,16 +43,20 @@
    * 자료, 유틸리티 함수, 상수, 임시변수를 숨기고 메서드나 인스턴스가 넘치는 클래스는 피해라
 9. **Dead Code**
 10. **Vertical Separation**
+    
     * 사용되는 위치에 가깝게 정의한다.
     * 비공개 함수는 처음으로 사용한 직후 정의
 11. **Inconsistency 일관성 부족**
 12. **Clutter - 잡동사니**
+    
     * 비어있는 기본 생성자? 쓸데없이 코드만 복잡하게 한다. 아무도 사용하지 않는 변수, 함수, 주석 등 제거!
 13. **Artificial Coupling - 인위적 결합**
+    
     * 서로 무관한 개념을 인위적으로 결합하지 않는다.
     * enum은 특정 클래스에 속할 이유가 없다.
     * 범용 static 함수도 마찬가지
 14. **Feature Envy - 기능 욕심**
+    
     * 클래스 메서드는 자기 클래스의 변수와 함수에 관심을 가져야지 다른 클래스의 변수와 함수에 관심을 가지면 안된다.
     * 메서드가 다른 객체의 참조와 변경자로 내용을 조작하면 그 객체 클래스 범위를 욕심내는 것 
     * ```java
@@ -103,17 +108,17 @@
         public int straightPay() {
           return getTenthsWorked() * getTenthRate();
         }
-
+          
         public int overTimePay() {
           int overTimeTenths = Math.max(0, getTenthsWorked() - 400); int overTimePay = overTimeBonus(overTimeTenths);
           return straightPay() + overTimePay;
         }
-
+          
         private int overTimeBonus(int overTimeTenths) {
           double bonus = 0.5 * getTenthRate() * overTimeTenths; 
           return (int) Math.round(bonus);
         }
-
+          
        ```
     * 부울 인수 뿐만 아니라 enum, int 등 함수 동작을 제어하려하는 인수는 다 바람직하지 않다.
     * 인수를 넘겨 동작하는 대신 새로운 함수를 만드는게 낫다.
@@ -130,11 +135,13 @@
     * 언뜻보면 static함수로 해도 될것 같지만, 재정의할 가능성이 있으면 X
     * 조금이라도 의심스러우면 인스턴스 함수로 정의한다.
 19. **Use Explanatory Variables-서술적 변수**
+    
     * 서술적인 변수 이름은 많이 써도 좋다.
     * 계산을 여러 단계로 나누고, 중간값으로 서술적인 변수를 사용하면 좋다.
 20. **Function Names Should Say What They Do-이름과 기능이 일치하는 함수**
     * addDay  / daysSince ~ 
 21. **Understand the Algorithm - 알고리즘을 이해하라**
+
 22. **Make Logical Dependencies Physical - 논리적 의존성을 물리적으로 드러내라**
     * 상대 모듈에 대해 뭔가 가정하면 안된다. - 논리적으로 의존
     * 의존하는 모든 정보를 명시적으로 요청하는게 낫다.
@@ -143,7 +150,7 @@
         private HourlyReportFormatter formatter; 
         private List<LineItem> page;
         private final int PAGE_SIZE = 55;
-
+      
         public HourlyReporter(HourlyReportFormatter formatter) { 
           this.formatter = formatter;
           page = new ArrayList<LineItem>();
@@ -275,3 +282,155 @@
     * A가 B를 써도 B가 C를 써도 A가 C를 알 필요가 없다.
     * 디미터의 법칙 / Writing Shy Code
     * 내가 사용하는 모듈이 내게 필요한 서비스를 모두 제공해야한다. 원하는 메서드 찾느라 탐색할 필요가 없어야한다.
+
+## Java
+
+1. **Avoid Long Import Lists by Using Wildcards**
+
+   * 와일드카드로 추가해서 ...
+   * js에서는 근데 하나하나 지정하는게 좋을걸?
+
+2. **Don't Inherit Constants**
+
+   ```java
+   public interface PayrollConstants {
+   	public static final int TENTHS_PER_WEEK = 400; 
+     public static final double OVERTIME_RATE = 1.5;
+   }
+   ```
+
+   static import를 쓰자!
+
+   ```java
+   import static PayrollConstants.*;
+   ```
+
+3. Constants versus Enums
+
+## Name
+
+1. Choose Descriptive Names
+
+   * ```java
+     public int x() { 
+       int q = 0; int z = 0;
+       for (int kk = 0; kk < 10; kk++) { 
+         if (l[z] == 10){
+           q += 10 + (l[z + 1] + l[z + 2]);
+           z += 1; 
+         }
+         else if (l[z] + l[z + 1] == 10) {
+           q += 10 + l[z + 2];
+           z += 2; 
+         } else {
+           q += l[z] + l[z + 1];
+           z += 2; 
+         }
+       }
+     	return q; 
+     }
+     
+     public int score() {
+       int score = 0;
+       int frame = 0;
+       for (int frameNumber = 0; frameNumber < 10; frameNumber++) {
+         if (isStrike(frame)) {
+     	    score += 10 + nextTwoBallsForStrike(frame); 
+           frame += 1;
+         } else if (isSpare(frame)) {
+         	score += 10 + nextBallForSpare(frame); 
+           frame += 2;
+         } else {
+        	 score += twoBallsInFrame(frame); 
+           frame += 2;
+         } 
+       }
+     	return score; 
+     }
+     ```
+
+2. Choose Names at the Appropriate Level of Abstraction - 적절한 추상화 수준에서 이름을 선택
+
+   * 구현을 드러내는 이름은 피해라,
+
+   * 추상화 수준을 반영하는 이름을 선택해라..
+
+   * ```java
+     public interface Modem {
+     	boolean dial(String phoneNumber); 
+       boolean disconnect();
+     	boolean send(char c);
+     	char recv();
+     	String getConnectedPhoneNumber();
+     }
+     
+     public interface Modem {
+       boolean connect(String connectionLocator); 
+       boolean disconnect();
+       boolean send(char c);
+       char recv();
+       String getConnectedLocator();
+     }
+     ```
+
+   * 전화에 연결되는 모뎀이 아니라면 ? 
+
+3. Use Standard Nomenclature Where Possible - 가능하면 표준 명명법
+
+   * 데코레이터 패턴을 쓰면 decorator라는 이름
+
+4. Unambiguous Names - 명확한 이름
+
+   * 함수나 변수의 목적을 명확히 밝히는 이름을 선택
+
+5. Use Long Names for Long Scopes - 긴 범위는 긴 이름?
+
+   * 이름의 길이는 범위에 비례해야한다?
+   * 아  변수의 스코프를 말하는거였구나ㅣ.
+
+6. Avoid Encodings
+
+   * 이름에 유형 정보나 범위정보를 넣으면 안됨! m_ / f_ 같은 접두어 .. 어차피 ide..
+
+7. Names Should Describe Side-Effects
+
+   * 이름에 부수효과를 숨기지 않는다. 
+
+   * ```java
+     
+     public ObjectOutputStream getOos() throws IOException { 
+       if (m_oos == null) {
+     		m_oos = new ObjectOutputStream(m_socket.getOutputStream()); 
+       }
+     	return m_oos; 
+     }
+     ```
+
+   * `createOrReturnOos` 가 낫다.
+
+## Test
+
+1.  **Insufficient Tests** 불충분한 테스트
+   * 다 해라~
+2. **Use a Coverage Tool!**
+3. **Don’t Skip Trivial Tests** - 사소한 테스트를 건너뛰지마라
+   * 짜기 쉬움, 사소한 테스트가 제공하는 문서적 가치는 구현에 드는 비용을 넘어선다.
+4. **An Ignored Test Is a Question about an Ambiguity** - 무시한 테스트는 모호함을 나타낸다.
+   * 때로 요구사항이 불분명해서 프로그램이 돌아가는 방식을 확신하기 어렵다.
+   * 테케를 주석으로 처리하거나 테케 @Ignore로 표현함..
+5.  **Test Boundary Conditions** - 경계 조건 테스트
+6.  **Exhaustively Test Near Bugs** - 버그 주변은 철저히 테스트
+7. **Patterns of Failure Are Revealing**  - 실패 패턴을 살펴라
+   * 테스트 케이스가 실패하는 패턴으로 문제를 진단할 수 있다.
+   * 합리적인 순서로 정렬된 꼼꼼한 테스트케이스는 실패 패턴을 드러낸다.
+8. **Test Coverage Patterns Can Be Revealing** - 테스트 커버리지 패턴을 살펴라
+9.  **Tests Should Be Fast**
+
+## 결론
+
+* 이 목록이 완전하다고 말하기는 어렵다. 가치 체계를 피력할 뿐
+* 이 가치 체계는 이 책의 주제이자 목표다.
+* 전문가 정신과 장인 정신은 가치에서 나온다. 그 가치에 기반한 규율과 절제가 필요하다.
+
+
+

@@ -31,6 +31,7 @@
 * `EARLIEST_DATE_ORDINAL` 이 0이 아니라 2인 이유는 ,,, ms excel때문?
 * SpreadsheetDate 클래스로 가야한다. SpreadsheetDate클래스만 두 변수를 사용함.
   
+
 <br/>
 
 * MINIMUM_YEAR_SUPPORTED와 MAXIMUM_YEAR_SUPPORTED, DayDate는 추상클래스로 구체적인 구현 정보를 포함할 필요가 없다.
@@ -48,7 +49,7 @@
 
 ```java
 public abstract class DayDateFactory {
-  private static DayDateFactory factory = new SpreadsheetDateFactory(); 
+  private static DayDateFactory factory = new DayDateFactory(); 
   public static void setInstance(DayDateFactory factory) {
     DayDateFactory.factory = factory; 
   }
@@ -148,7 +149,7 @@ public enum WeekInMonth {
 * 이름을 변경하고 단순화하고 Month enum으로 옮겼다?
 ```java
 public static String monthCodeToString(final int month) {
-  return monthCodeToString(month, false); 390
+  return monthCodeToString(month, false);
 }
 
 public static String monthCodeToString(final int month,
@@ -157,13 +158,13 @@ public static String monthCodeToString(final int month,
   if (!isValidMonthCode(month)) {
     throw new IllegalArgumentException("SerialDate.monthCodeToString: month outside valid range.");
    }
-  final String[] months; 416
+  final String[] months; 
   if (shortened) {
     months = DATE_FORMAT_SYMBOLS.getShortMonths();
   }else {
     months = DATE_FORMAT_SYMBOLS.getMonths();
   }
-  return months[month - 1]; 425 
+  return months[month - 1]; 
 ```
 
 ```java
@@ -226,7 +227,7 @@ public static SerialDate addDays(final int days, final SerialDate base) {
 }
 
 public DayDate addDays(int days) {
-return DayDateFactory.makeDate(toOrdinal() + days);
+  return DayDateFactory.makeDate(toOrdinal() + days);
 }
 ```
 
@@ -235,7 +236,7 @@ return DayDateFactory.makeDate(toOrdinal() + days);
 
 <br/>
 
-* 임시 변수 설명을 사용해 더 일기 쉽게 고치고 
+* 임시 변수 설명을 사용해 더 읽기 쉽게 고치고 
 * 정적 메서드를 인스턴스메서드로 변경,
 * 중복된 인스턴스메서드 제거
 
