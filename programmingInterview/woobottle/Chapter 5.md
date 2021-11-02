@@ -4,9 +4,9 @@
 연결 리스트는 단순한 편이여서 한 시간에 두세 문제를 내야 하는 인터뷰 특성에도 잘 맞아 떨어진다.  
 ### 연결 리스트의 종류
 단일 연결 리스트, 이중 연결 리스트, 원형 연결 리스트   
-면접에서는 대부분 단인 연결 리스트 문제가 나온다
+면접에서는 대부분 단일 연결 리스트 문제가 나온다
 
-* 단일 연결리스트
+* 단일 연결리스트   
 <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F8475c3b6-33ce-4364-a31d-6690e0ff27f8%2FUntitled.png?table=block&id=20e264cb-5ed1-4f25-a46c-2c3138f0a4e3&spaceId=359809db-cb83-47c2-9cce-0c45f96418ab&width=2000&userId=56059f96-1ce0-4d35-87f6-3200db26ea2a&cache=v2" />
 
 python용 연결리스트
@@ -31,7 +31,7 @@ const b = new Node(2, null)
 a.next = b
 ```
 
-* 이중 연결 리스트
+* 이중 연결 리스트   
 <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F71324d22-9c5f-4f50-9475-6df76165414f%2FUntitled.png?table=block&id=898f0be0-c1bf-4283-b1e5-4f4ecd48f0ca&spaceId=359809db-cb83-47c2-9cce-0c45f96418ab&width=1470&userId=56059f96-1ce0-4d35-87f6-3200db26ea2a&cache=v2">
 
 
