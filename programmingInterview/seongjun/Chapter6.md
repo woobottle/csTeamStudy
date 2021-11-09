@@ -234,13 +234,10 @@ n 임
        for a in graph[name]:
         distance = cur_dist + 1
         if distance < distances[name]:
-          distances[name] = [distance, ]
-  
-      
-      
-      
-      
+          distances[name] = [distance, ]   
   ```
+  
+* 
 
 * 
 
