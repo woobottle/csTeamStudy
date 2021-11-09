@@ -74,3 +74,66 @@ int factorial(int n) {
 - 스택을 기반으로 반복형 루틴을 만드는 방법이 같은 루틴을 재귀 호출을 써서 구현하는 것에 비해 훨씬 복잡함.
 - 별다른 얘기가 없다면 재귀 알고리즘은 재귀 호출을 써서 구현하는 편이 더 좋다.
 
+
+
+## 문제
+
+### 문자열 조합
+> 문자열에 있는 문자들의 모든 가능한 조합을 출력하는 함수를 구현하라. 조합의 길이는 1이상이고 문자열 길이 이하이다. 문자의 배치 순서만 다를 뿐
+> 같은 문자들이 들어가 있는 조합은 같은 조합으로 간주한다. 즉, '123'이라는 문자열이 입력됐을 때 '12'와 '31'은 서로 다른 조합이지만 '21'은 '12'와 같다.
+
+```java
+
+public class Combinations {
+  private StringBuilder out = new StringBuilder();
+  private final String in;
+
+  public Combinations( final String str ) {
+    in = str;
+  }
+
+  public void combine() {
+    combine(0);
+  }
+
+  private void combine(int start) {
+    for (int i = start; i < in.length(); ++i) {
+      out.append(in.charAt(i));
+      System.out.println(out);
+      if (i < in.length()) {
+        combine(i + 1);
+      }
+      out.setLength(out.length() - 1);
+    }
+  }
+}
+
+```
+
+### 전화 단어
+> 일곱 자리 전화번호를 입력받아 주어진 수를 표현할 수 있는 모든 가능한 단어 또는 글자 조합을 출력하는 루틴을 작성. 2~9만 글자로 바꿀 수 있음.
+> 866-2665
+
+``` java
+public class TelephoneNumber {
+  private static final int PHONE_NUMBER_LENGTH = 7;
+  private final int[] phoneNum;
+  private char[] result = new char[PHONE_NUMBER_LENGTH];
+
+  public TelephoneNumber(int[] n) {
+    phoneNum = n;
+  }
+
+  public void printWords(int curDigit) {
+    if (curDigit == PHONE_NUMBER_LENGTH) {
+      System.out.println(new String(result));
+      return;
+    }
+    for (int i = 1; i<=3; ++i) {
+      result[curDigit] = getCharKey(phoneNum[curDigit], i);
+      printWords(curDigit + 1);
+      if (phoneNum[curDigit] == 0 || phoneNum[curDigit] == 1) return;
+    }
+  }
+}
+```

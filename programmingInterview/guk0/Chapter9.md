@@ -14,6 +14,17 @@
 - 표준 라이브러리의 정렬 알고리즘은 비교 알고리즘을 바탕으로 돌아간다.
   - 비교 알고리즘에서는 O(nlog(n))보다 빠른 알고리즘이 없다.
 
+
+- 안정 정렬 
+  - 정렬 후 같은 값의 요소의 순서가 보장
+- 불안정 정렬
+  - 정렬 후 같은 값의 요소의 순서 보장 x
+- 내부 정렬
+  - 정렬하고자 하는 모든 데이터가 메모리에 올라와 정렬이 수행되는 방식
+- 외부 정렬
+  - 정렬하고자 하는 데이터가 너무 크기 때문에 일부만 올려놓은 상태에서 정렬한 것을 다시 합하는 방식
+- 제자리 정렬
+  - 주어진 공간 외에 추가적인 공간을 사용하지 않는 정렬
 <br>
 
 ### 선택 정렬
@@ -73,6 +84,23 @@ public static void insertionSort(int[] data){
       }
     }
   }
+}
+
+
+public void insertionSort() {
+    int[] array = this.array;
+    int length = array.length;
+
+    for (int i = 1; i < length; i++) {
+        int j = i - 1;
+        int key = array[i];
+        while (j >= 0 && array[j] > key) {
+            array[j + 1] = array[j];// element들을 하나씩 뒤로 미는 작업. 계속 index -1 의 값으로 바꿔줌.
+            j--;// j가 -1까지 돈다.
+        }
+        array[j + 1] = key;
+    }
+    System.out.println(Arrays.toString(array));
 }
 
 ```
@@ -136,6 +164,27 @@ public static void quickSortSimple( int[] data ) {
 }
 ```
 
+``` java
+public void quickSort(int left, int right) {
+    int[] array = this.array;
+    int pivot = array[(left + right) / 2];
+    int leftPointer = left;
+    int rightPointer = right;
+
+    while (leftPointer <= rightPointer) {
+        while (array[leftPointer] < pivot) leftPointer++;
+        while (array[rightPointer] > pivot) rightPointer--;
+        if (leftPointer <= rightPointer) swap(leftPointer++, rightPointer--);
+    }
+
+    if (left < rightPointer) quickSort(left, rightPointer);
+    if (leftPointer < right) quickSort(leftPointer, right);
+
+    System.out.println(Arrays.toString(array));
+}
+
+```
+
 <br>
 
 ### 합치기 정렬(병합 정렬)
@@ -195,3 +244,101 @@ private static void merge( int[] dest, int[] left, int[] right ) {
 - 삽입 정렬은 합치기 정렬보다 오버헤드도 적고 데이터 집합이 작을 경우 효율적이므로 위와 같은 최적화 방법도 사용해볼 수 있다.
 - 합치기 정렬은 데이터 집합이 메모리에 한번에 올리기에 너무 클 때 쓰기 좋은 방법.
 - O(n log(n))
+
+## 문제
+
+### 안정적인 선택 정렬
+> 안정적인 버전의 선택 정렬을 구현하라(같은 값의 요소의 순서가 보장)
+
+- 선택 정렬의 삽입을 없애고 다른 방법으로 구현해야한다. swap과정이 반복되다보니 정렬되지 않은 키의 순서가 계속 바뀐다.
+- 배열 삽입/삭제 작업을 해야하므로 O(1)연산(swap)에서 O(n)연산으로 바뀐다.
+```java
+public static void selectionSortStable(CursorableLinkedList data) {
+  CursorableLinkedList.Cursor sortedBoundary = data.cursor(0);
+  while (sortedBoundary.hasNext()) {
+    sortedBoundary.add(
+      getMinimum(data, sortedBoundary, nextIndex());
+    )
+  }
+  sortedBoundary.close();
+}
+
+private Comparable getMinimum(CursorableLinkedList data, int start) {
+  CursorableLinkedList.Cursor unsorted = data.cursor(start);
+  CursorableLinkedList.Cursor minPos = data.cursor(start+1);
+  Comparable minValue = (Comparable) minPos.previoud();
+
+  while (unsorted.hasNext()) {
+    if (((Comparable)unsorted.next()).comparableTo(minValue) < 0) {
+      while (minPos.nextIndex() < unsorted.nextIndex()) {
+        minValue = (Comparable) minPos.next();
+      }
+
+    }
+  }
+
+  minPos.remove();
+  minPos.close();
+  unsorted.close();
+  return minValue;
+}
+```
+
+<br/>
+
+### 다중 키 정렬
+> 직원에 대한 정보를 저장하기 위한 다음과 같은 객체로 이루어진 배열이 있다.
+> public class Employee {
+>   public String extension; 
+>   public String givenname;
+>   public String surname;
+> }
+> 표준 라이브러리의 정렬 루틴을 이용하여 회사 전화번호부처럼 성(surname) 알파벳순, 그리고 이름(givenname) 알파벳 순으로 정렬하라
+
+- 성을 기준으로 정렬 후 이름순으로 정렬 -> 성을 먼저 비교한 다음 성이 같은 경우 이름을 비교.
+- Comparator 라이브러리 사용.
+
+```java
+  import java.util.Comparator;
+
+  public class EmployeeNameComparator implements Comparator<Employee> {
+    public int compare(Employee e1, Employee e2) {
+      int ret = e1.surname.compareToIgnoreCase(e2.surname);
+
+      if (ret === 0) {
+        ret = e1.givenname.compareToIgnoreCase(e2.givenname);
+      }
+      return ret;
+    }
+  }
+
+
+  public static void sortEmployees(Employee[] employees){
+    // 비교자 지정
+    Arrays.sort(employees, new EmployeeNameComparator());
+  }
+```
+
+<br/>
+
+### 안정적인 정렬 코드
+
+```java
+public class EmployeesSequenceComparator implements Comparator<Employee> {
+  public int compare(Employee e1, Employee e2) {
+    int ret = e1.surname.compareToIgnoreCase(e2.surname);
+
+    if (ret === 0) {
+      ret = Integer.compare(e1.sequence, e2.givenname);
+    }
+    return ret;
+  }
+}
+
+public static void sortEmployeesStable(Employee[] employees) {
+  for (int i = 0; i < employees.length; ++i) {
+    employees[i].sequence = i;
+  }
+  shakySort(employees, new EmployeesSequenceComparator());
+}
+```
