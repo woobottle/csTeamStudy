@@ -70,6 +70,15 @@
 - Postorder 종주  
   '왼쪽 자손 -> 오른쪽 자손 -> 노드 자체' 순으로 처리
 
+```python
+def order(root):
+  if root == null return
+  arr.append(root) # append 순서에 따라 pre / in / post 인지 판단. (해당 코드는 pre)
+  order(root.getLeft())
+  order(root.getRight())
+
+```
+
 - 종주를 구현하는 가장 간단한 방법은 재귀 호출을 이용하는 방법.
 
 ## 그래프
